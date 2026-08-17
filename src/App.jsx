@@ -377,7 +377,7 @@ const clearOrder = () => {
           );
 
           const response = await fetch(
-            "http://jesu-star-restaurant-backend.vercel.app//api/orders",
+            "http://jesu-star-restaurant-backend.vercel.app/api/orders",
             {
               method: "POST",
               headers: {
