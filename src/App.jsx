@@ -55,7 +55,7 @@ const clearOrder = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/reservations", {
+      const response = await fetch("http://jesu-star-restaurant-backend.vercel.app/api/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
