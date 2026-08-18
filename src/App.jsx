@@ -55,7 +55,7 @@ const clearOrder = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://jesu-star-restaurant-backend.vercel.app/api/reservations", {
+      const response = await fetch("https://jesu-star-restaurant-backend.vercel.app/api/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const clearOrder = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://jesu-star-restaurant-backend.vercel.app/api/contact", {
+      const response = await fetch("https://jesu-star-restaurant-backend.vercel.app/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -377,7 +377,7 @@ const clearOrder = () => {
           );
 
           const response = await fetch(
-            "http://jesu-star-restaurant-backend.vercel.app/api/orders",
+            "https://jesu-star-restaurant-backend.vercel.app/api/orders",
             {
               method: "POST",
               headers: {
