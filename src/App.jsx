@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import Admin from "./Admin";
 import pizzaImage from "./assets/pizza.avif";
 import burgerImage from "./assets/burger.avif.webp";
 import pastaImage from "./assets/pasta.avif.jpg";
@@ -11,8 +12,13 @@ function App() {
   const [cart, setCart] = useState([]);
   const [orderMessage, setOrderMessage] = useState("");
   const [showNotification, setShowNotification] = useState(false);
+   if (window.location.pathname === "/admin") {
+    return <Admin />;
+  }
   const addToOrder = (item, price) => {
   const existingItem = cart.find((cartItem) => cartItem.name === item);
+ 
+  
 
   if (existingItem) {
     setCart(
@@ -377,7 +383,7 @@ const clearOrder = () => {
           );
 
           const response = await fetch(
-            "https://jesu-star-restaurant-backend.vercel.app/api/orders",
+            "http://localhost:5000/api/orders",
             {
               method: "POST",
               headers: {

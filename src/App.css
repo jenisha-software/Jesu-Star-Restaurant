@@ -1158,3 +1158,67 @@ footer p {
   min-width: 0 !important;
   padding: 35px !important;
 }
+/* ============================= */
+/*       ADMIN LOGIN DESIGN       */
+/* ============================= */
+
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff7ed, #ffe4c4);
+  padding: 30px 20px;
+}
+
+.admin-login h1 {
+  margin-bottom: 25px;
+  font-size: 32px;
+  color: #8b4513;
+  text-align: center;
+}
+
+.admin-login::before {
+  content: "👨‍🍳";
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+
+.admin-login input {
+  width: 100%;
+  max-width: 380px;
+  padding: 15px 16px;
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.admin-login input:focus {
+  border-color: #d2691e;
+  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.12);
+}
+
+.admin-login button {
+  width: 100%;
+  max-width: 380px;
+  padding: 15px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 10px;
+  background: #8b4513;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-login button:hover {
+  background: #6f350f;
+  transform: translateY(-1px);
+}

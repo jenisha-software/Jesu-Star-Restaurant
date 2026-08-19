@@ -5,6 +5,9 @@ function Admin() {
   const [reservations, setReservations] = useState([]);
   const [messages, setMessages] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+  localStorage.getItem("adminLoggedIn") === "true"
+);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/reservations")
@@ -44,7 +47,61 @@ function Admin() {
         console.error("Admin Orders Error:", error);
       });
   }, []);
+  if (!isLoggedIn) {
+  return (
+    <div className="admin-login">
+      <h1>🍽️ Jesu Star Admin</h1>
 
+      <input
+        type="email"
+        placeholder="Admin Email"
+        id="admin-email"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        id="admin-password"
+      />
+
+      <button
+        onClick={async () => {
+          const email = document.getElementById("admin-email").value;
+          const password = document.getElementById("admin-password").value;
+
+          try {
+            const response = await fetch(
+              "http://localhost:5000/api/admin/login",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  email,
+                  password,
+                }),
+              }
+            );
+
+            const data = await response.json();
+
+            if (data.success) {
+  localStorage.setItem("adminLoggedIn", "true");
+  setIsLoggedIn(true);}else {
+              alert("Invalid email or password");
+            }
+          } catch (error) {
+            console.error("Admin Login Error:", error);
+            alert("Cannot connect to backend");
+          }
+        }}
+      >
+        Login
+      </button>
+    </div>
+  );
+}
   return (
     <div className="admin-page">
       <aside className="admin-sidebar">
@@ -79,11 +136,14 @@ function Admin() {
           </div>
 
           <button
-            className="admin-logout"
-            onClick={() => alert("Logged out successfully!")}
-          >
-            Logout
-          </button>
+  className="admin-logout"
+  onClick={() => {
+    localStorage.removeItem("adminLoggedIn");
+    setIsLoggedIn(false);
+  }}
+>
+  Logout
+</button>
         </div>
 
         {/* Dashboard */}
