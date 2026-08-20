@@ -227,7 +227,49 @@ function Admin() {
       <div className="order-card-header">
         <div>
           <h3>Order #{order._id.slice(-6)}</h3>
-          <span>{order.status}</span>
+          <select
+  value={order.status}
+  onChange={async (e) => {
+    const newStatus = e.target.value;
+
+    try {
+      const response = await fetch(
+        `https://jesu-star-restaurant-backend.vercel.app/api/orders/${order._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            status: newStatus,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        setOrders((prevOrders) =>
+          prevOrders.map((item) =>
+            item._id === order._id
+              ? { ...item, status: newStatus }
+              : item
+          )
+        );
+      } else {
+        alert("Failed to update order status");
+      }
+    } catch (error) {
+      console.error("Status Update Error:", error);
+      alert("Cannot connect to backend");
+    }
+  }}
+>
+  <option value="Pending">Pending</option>
+  <option value="Confirmed">Confirmed</option>
+  <option value="Completed">Completed</option>
+  <option value="Cancelled">Cancelled</option>
+</select>
         </div>
       </div>
 
